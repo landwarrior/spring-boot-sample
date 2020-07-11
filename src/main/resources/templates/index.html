@@ -24,8 +24,59 @@
         </div>
         <div th:text="${test}"></div>
       </div>
+      <div class="card-header">フォームのテスト</div>
+      <div class="card-body">
+        <div>
+          お次はフォームで試してみる
+        </div>
+        <form th:action="@{/html}" method="post">
+          <div class="row">
+            <div class="col-md-3">
+              テスト1
+            </div>
+            <div class="col-md-9">
+              <input type="text" name="test1" class="form-control" th:value="${test1}">
+            </div>
+            <div class="col-md-3">
+              テスト2
+            </div>
+            <div class="col-md-9">
+              <label class="form-check-inline">
+                <input type="radio" name="test2" value="1" class="form-check-input">
+                こっちは1
+              </label>
+              <label class="form-check-inline">
+                <input type="radio" name="test2" value="2" class="form-check-input">
+                こっちは2
+              </label>
+            </div>
+            <div class="col-md-3">
+              ラジオボタンで選んだのは
+            </div>
+            <div class="col-md-9" th:text="${test2_text}">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <button type="submit" class="btn btn-primary" name="submit1">
+                そのままテンプレートを表示する方
+              </button>
+            </div>
+            <div class="col-md-6 text-right">
+              <button type="submit" class="btn btn-primary" name="submit2">
+                リダイレクトで再表示させる方
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-body">
+        Postした時にF5で画面更新するとPostをまたやる。
+        <br>なので、「テスト表示」に戻らない
+        <br><a th:href="@{/html}">ここをクリック</a>すると、GetでHTTP通信しなおすので戻る
+      </div>
     </div>
   </div>
-  <hr>
 </body>
 </html>
