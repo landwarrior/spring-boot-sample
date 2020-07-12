@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>RepositoryAccessSample</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/my.css}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        データ取得のサンプル
+      </div>
+      <div class="card-body">
+        データ登録フォーム
+        <form th:action="@{/repo}" method="post" th:object="${formModel}">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input id="name" type="text" class="form-control" name="name" th:value="*{name}" required autocomplete="name"
+                    autofocus placeholder="name">
+                  <label for="name">名前</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input id="age" type="text" class="form-control" name="age" th:value="*{age}" required autocomplete="age"
+                    autofocus placeholder="age">
+                  <label for="age">年齢</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input id="mail" type="email" class="form-control" name="mail" th:value="*{mail}" required autocomplete="mail"
+                    autofocus placeholder="mail">
+                  <label for="mail">メール</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input id="memo" type="text" class="form-control" name="memo" th:value="*{memo}" required autocomplete="memo"
+                    autofocus placeholder="memo">
+                  <label for="memo">メモ</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">登録</button>
+        </form>
+      </div>
+      <div class="card-body">
+        4カラムで取得したデータを表示してみる
+        <div class="row">
+          <th:block th:each="d : ${data}">
+            <div class="col-md-3">
+              <div class="card-body border border-info rounded">
+                名前：<span th:text="${d.name}"></span>
+                <br>年齢：<span th:text="${d.age}"></span>
+                <br>メール：<span th:text="${d.mail}"></span>
+                <br>メモ：<spam th:text="${d.memo}"></spam>
+              </div>
+            </div>
+          </th:block>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

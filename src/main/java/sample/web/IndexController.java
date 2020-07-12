@@ -1,14 +1,23 @@
 package sample.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import sample.entity.MyData;
+import sample.repositories.MyDataRepository;
+
 @Controller
 public class IndexController {
+
+    // リポジトリを使う準備
+    @Autowired
+    MyDataRepository repository;
 
     @GetMapping("/")
     public String index() {
@@ -48,5 +57,18 @@ public class IndexController {
         redirectAttributes.addFlashAttribute("test1", "リダイレクトした");
         return "redirect:/html";
 
+    }
+
+    @GetMapping("/repo")
+    public String repoTest(@ModelAttribute("formModel") MyData mydata, Model model) {
+        Iterable<MyData> list = repository.findAll();
+        model.addAttribute("data", list);
+        return "repo";
+    }
+
+    @PostMapping("/repo")
+    public String repoPostTest(@ModelAttribute("formModel") MyData mydata, Model model) {
+        repository.saveAndFlush(mydata);
+        return "redirect:/repo";
     }
 }
