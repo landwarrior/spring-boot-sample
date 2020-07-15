@@ -21,8 +21,8 @@ public class IndexController {
 
     @GetMapping("/")
     public String index() {
-        // とりあえずリダイレクトで RestController に飛ばしておく
-        return "redirect:/hello";
+        // home.htmlを表示する
+        return "home";
     }
 
     /**

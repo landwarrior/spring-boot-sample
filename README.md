@@ -7,7 +7,7 @@ Spring Boot の勉強用
 
 ### http://localhost:8080
 
-これは http://localhost:8080/hello にリダイレクトさせるだけです
+アドレスを覚えるの面倒なのでジャンボトロンでも表示してそれぞれのリンクを載せることにしました。
 
 ### http://localhost:8080/hello
 
